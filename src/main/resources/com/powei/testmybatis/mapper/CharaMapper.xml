@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.powei.testmybatis.mapper.CharaMapper">
+    <select id="list" resultType="com.powei.testmybatis.pojo.Chara">
+        select max_borrow as maxBorrow, duration as duration, name as name, id as id from reader_char
+    </select>
+
+    <update id="update">
+        <if test="id != null">
+            update reader_char set
+            <if test="duration != null">
+                duration = #{duration},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="maxBorrow != null">
+                max_borrow = #{maxBorrow},
+            </if>
+            id = #{id}
+            where id = #{id}
+        </if>
+    </update>
+</mapper>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.powei.testmybatis.mapper.BookMapper">
+    <!--    单条记录封装的类型-->
+    <select id="query" resultType="com.powei.testmybatis.pojo.Book">
+<!--public List<Book> query(Integer id, String barCode, Integer typeID, String name, -->
+<!--String author, String press, Integer bookCase);-->
+
+        select id as id, press as press, barcode as barCode, bookname as bookName, typeid as typeId, author as author,
+               translator as translator, ISBN as ISBN, price as price, page as page, bookcase as bookCase, inTime as inTime, operator
+               as operator, del as del, avail as avail from book_info
+            <where>
+                del != 1
+            <if test="id != null">
+                and id = #{id}
+            </if>
+
+            <if test="barCode != null">
+                and barcode = #{barCode}
+            </if>
+
+            <if test="typeID != null">
+                and typeid = #{typeID}
+            </if>
+
+            <if test="name != null">
+                and bookname = #{name}
+            </if>
+
+            <if test="author != null">
+                and author = #{author}
+            </if>
+
+            <if test="press != null">
+                and press = #{press}
+            </if>
+            <if test="bookCase != null">
+                and bookcase = #{bookCase}
+            </if>
+            </where>
+    </select>
+
+    <update id="update">
+        <if test="id != null">
+        update book_info set
+            <if test="press != null">
+                press = #{press},
+            </if>
+            <if test="barCode != null">
+                barcode = #{barCode},
+            </if>
+            <if test="bookName != null">
+                bookname = #{bookName},
+            </if>
+            <if test="typeId != null">
+                typeid = #{typeId},
+            </if>
+            <if test="author != null">
+                author = #{author},
+            </if>
+            <if test="translator != null">
+                translator = #{translator},
+            </if>
+            <if test="ISBN != null">
+                ISBN = #{ISBN},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="page != null">
+                page = #{page},
+            </if>
+            <if test="bookCase != null">
+                bookcase = #{bookCase},
+            </if>
+            <if test="inTime != null">
+                inTime = #{inTime},
+            </if>
+            <if test="operator != null">
+                operator = #{operator},
+            </if>
+           <if test="avail != null">
+                avail = #{avail},
+            </if>
+            <if test="del != null">
+                del = #{del},
+            </if>
+                id = #{id}
+        where id = #{id}
+        </if>
+    </update>
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.powei.testmybatis.mapper.AdminMapper">
+<!--    单条记录封装的类型-->
+    <select id="getAllAdmin" resultType="com.powei.testmybatis.pojo.Admin">
+        select usergroup as `group`, name as name, password as password, id as id from admin
+    </select>
+
+    <delete id="deleteAdminByIDs">
+        delete from admin where id in
+                          <foreach collection="ids" item="id" separator=", " open="(" close=")">
+                              #{id}
+                          </foreach>
+    </delete>
+</mapper>

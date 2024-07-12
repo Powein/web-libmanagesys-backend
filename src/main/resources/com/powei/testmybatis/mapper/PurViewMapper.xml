@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.powei.testmybatis.mapper.PurViewMapper">
+    <update id="updatePurView">
+        <if test="id != null">
+            update purview set
+            <if test="borrowBack != null">
+                borrowback = #{borrowBack},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="sysQuery != null">
+                sysquery = #{sysQuery},
+            </if>
+            <if test="sysSet != null">
+                sysset = #{sysSet},
+            </if>
+            <if test="readerSet != null">
+                readerset = #{readerSet},
+            </if>
+            <if test="bookSet != null">
+                bookset = #{bookSet},
+            </if>
+               id = #{id}
+            where id = #{id}
+        </if>
+    </update>
+</mapper>

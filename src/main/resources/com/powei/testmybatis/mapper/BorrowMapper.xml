@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.powei.testmybatis.mapper.BorrowMapper">
+
+<!--    public class BorrowQueryArgs {-->
+<!--    Integer fromTime;-->
+<!--    Integer toTime;-->
+<!--    Integer readerId;-->
+<!--    Integer bookId;-->
+<!--    Boolean ifBack;-->
+<!--    }-->
+
+    <select id="query" resultType="com.powei.testmybatis.pojo.Borrow" >
+        select id as id, readerid as readerId, bookid as bookId, borrow_time as borrowTime, back_time as backTime, operator as operator, ifback as ifBack from borrow
+        <where>
+            1 = 1
+        <if test="fromTime != null">
+             and date(borrow_time) &gt;= #{fromTime}
+        </if>
+        <if test="toTime != null">
+            and date(borrow_time) &lt;= #{toTime}
+        </if>
+        <if test="readerId != null">
+            and readerid = #{readerId}
+        </if>
+        <if test="bookId != null">
+            and bookid = #{bookId}
+        </if>
+        <if test="ifBack != null">
+            and ifback = #{ifBack}
+        </if>
+        <if test="borrowId != null">
+            and id = #{borrowId}
+        </if>
+        </where>
+    </select>
+</mapper>
